@@ -10,11 +10,17 @@ using System.Windows.Forms;
 
 namespace Gelir_Gider_App
 {
-    public partial class Form1 : Form
+    public partial class Main : Form
     {
-        public Form1()
+        public Main()
         {
             InitializeComponent();
+        }
+
+        private void uygulamaHakkindaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Hakkinda hakkinda = new Hakkinda();
+            hakkinda.ShowDialog();
         }
     }
 }

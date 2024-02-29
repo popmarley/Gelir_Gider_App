@@ -1,0 +1,39 @@
+﻿
+Versiyon 1.0(is Derlemesi 240229,1442)
+
+
+Bilenen hatalar ve eklenecekler
+
+- her aya özel excelde sayfa açılacak sayfa ismi o ayın adı olacak
+- bir tane genel özet sayfası olacak
+- gelir gider + - durumu
+- Gelir girilecek
+- Harcama adı alanı
+- Harcama Tarihi
+- harcanan miktar
+- kaydet butonu
+- gelir yeşil 
+- gider kırmızı olacak
+- gelir gideri düzeltme
+- altta aylık özet tarih- harcama adı -miktarı -işlem
+- şifremi unuttum ekranı yapılacak
+- şifreyi değiştirmek için kullanıcı isterse kullanıcı adı güvenlik sorusuyla yapabilecek
+- ya da e posta ile şifreyi sıfırlama maili gönderilecek
+- sıfırlanınca da excel de de değişecek
+- sağ üstte giriş yapan kullanıcının adı yazacak
+- Giriş ekranı yapılacak
+- kullanıcı adı ya da e posta ile giriş yapabilme olacak
+- beni hatırla butonu olacak
+
+
+
+Yapılanlar
+
++ Main form sayfası oluşturuldu (Versiyon 1.0(is Derlemesi 240229,1442))
++ Yapılacaklar txt dosyası oluşturuldu (Versiyon 1.0(is Derlemesi 240229,1442))
++ Hakkında form sayfası oluşturuldu (Versiyon 1.0(is Derlemesi 240229,1442))
++ Password form sayfası oluşturuldu (Versiyon 1.0(is Derlemesi 240229,1442))
++ Hakkında resim eventi eklendi (Versiyon 1.0(is Derlemesi 240229,1442))
++ Hakkında resim eventi oluşturmak için şifreleme sistemi eklendi (Versiyon 1.0(is Derlemesi 240229,1442))
++ Exe oluşturulduğunda dosya konumunun açılması eklendi (Versiyon 1.0(is Derlemesi 240229,1442))
++ Hakkında formuna görüş ve öneri sunmak için link eklendi (Versiyon 1.0(is Derlemesi 240229,1442))
