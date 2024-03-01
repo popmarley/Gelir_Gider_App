@@ -1,4 +1,4 @@
-##Gelir-Gider Takip Uygulaması
+## Gelir-Gider Takip Uygulaması
 
 Bu uygulama, kullanıcıların aylık gelir ve giderlerini kolayca takip edebilmeleri için tasarlanmış bir Windows Forms uygulamasıdır. Excel dosyalarını kullanarak veri saklama ve işleme özellikleri sunar. Kullanıcılar, farklı aylar için gelir ve gider bilgilerini girerek finansal durumlarını daha iyi yönetebilir.
 
