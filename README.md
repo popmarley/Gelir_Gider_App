@@ -15,12 +15,12 @@ Son güncellemelerle birlikte uygulamaya birçok yeni özellik ve iyileştirme e
 
 **Versiyon 1.0 (İş Derlemesi 240229,1442) Yenilikleri**
 
-Ana Sayfa Geliştirildi: Kullanıcı dostu bir ana sayfa tasarımı oluşturuldu.
-1. Yapılacaklar Listesi: Uygulama içi yapılacaklar listesi eklendi.
-2. Hakkında Sayfası: Uygulamanın amacı ve kullanımı hakkında bilgiler sunan bir sayfa eklendi.
-3. Şifreleme Sistemi: Güvenli bir kullanıcı deneyimi sağlamak için şifreleme sistemi entegre edildi.
-4. Görüş ve Öneri Bağlantısı: Kullanıcıların geri bildirimde bulunabilmeleri için Hakkında sayfasına bir link eklendi.
-5. Otomatik Dosya Konumu Açma: Uygulama .exe dosyası oluşturulduğunda, dosya konumunun otomatik olarak açılması sağlandı.
+1. Ana Sayfa Geliştirildi: Kullanıcı dostu bir ana sayfa tasarımı oluşturuldu.
+2. Yapılacaklar Listesi: Uygulama içi yapılacaklar listesi eklendi.
+3. Hakkında Sayfası: Uygulamanın amacı ve kullanımı hakkında bilgiler sunan bir sayfa eklendi.
+4. Şifreleme Sistemi: Güvenli bir kullanıcı deneyimi sağlamak için şifreleme sistemi entegre edildi.
+5. Görüş ve Öneri Bağlantısı: Kullanıcıların geri bildirimde bulunabilmeleri için Hakkında sayfasına bir link eklendi.
+6. Otomatik Dosya Konumu Açma: Uygulama .exe dosyası oluşturulduğunda, dosya konumunun otomatik olarak açılması sağlandı.
 
 **Versiyon 1.1 (İş Derlemesi 240301,1710) Yenilikleri**
 1. Aylık Excel Sayfa Oluşturma: Her ay için otomatik olarak özel Excel sayfaları oluşturulması sağlandı, böylece kullanıcılar finansal takiplerini daha düzenli bir şekilde yapabilirler.
