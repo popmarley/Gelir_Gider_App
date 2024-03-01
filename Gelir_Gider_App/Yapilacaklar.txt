@@ -1,17 +1,13 @@
 ﻿
-Versiyon 1.0(is Derlemesi 240229,1442)
+Versiyon 1.1(is Derlemesi 240301,1710)
 
 
 Bilenen hatalar ve eklenecekler
 
-- her aya özel excelde sayfa açılacak sayfa ismi o ayın adı olacak
+
 - bir tane genel özet sayfası olacak
 - gelir gider + - durumu
 - Gelir girilecek
-- Harcama adı alanı
-- Harcama Tarihi
-- harcanan miktar
-- kaydet butonu
 - gelir yeşil 
 - gider kırmızı olacak
 - gelir gideri düzeltme
@@ -37,3 +33,5 @@ Yapılanlar
 + Hakkında resim eventi oluşturmak için şifreleme sistemi eklendi (Versiyon 1.0(is Derlemesi 240229,1442))
 + Exe oluşturulduğunda dosya konumunun açılması eklendi (Versiyon 1.0(is Derlemesi 240229,1442))
 + Hakkında formuna görüş ve öneri sunmak için link eklendi (Versiyon 1.0(is Derlemesi 240229,1442))
++ Excel oluşturulurken her aya özel sayfa açılaması eklendi (Versiyon 1.1(is Derlemesi 240301,1710))
++ Excelde verileri eklerken işlem türüne göre renklendirme işlevi eklendi (Versiyon 1.1(is Derlemesi 240301,1710))
