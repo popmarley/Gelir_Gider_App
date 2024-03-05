@@ -40,10 +40,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Tarih = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.harcamaAlani = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tutar = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.İslem = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -146,35 +142,10 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Tarih,
-            this.harcamaAlani,
-            this.Tutar,
-            this.İslem});
             this.dataGridView1.Location = new System.Drawing.Point(192, 53);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(438, 236);
             this.dataGridView1.TabIndex = 5;
-            // 
-            // Tarih
-            // 
-            this.Tarih.HeaderText = "Tarih";
-            this.Tarih.Name = "Tarih";
-            // 
-            // harcamaAlani
-            // 
-            this.harcamaAlani.HeaderText = "Harcama Alanı";
-            this.harcamaAlani.Name = "harcamaAlani";
-            // 
-            // Tutar
-            // 
-            this.Tutar.HeaderText = "Tutar";
-            this.Tutar.Name = "Tutar";
-            // 
-            // İslem
-            // 
-            this.İslem.HeaderText = "İşlem";
-            this.İslem.Name = "İslem";
             // 
             // label4
             // 
@@ -237,6 +208,7 @@
             this.cmbAy.Name = "cmbAy";
             this.cmbAy.Size = new System.Drawing.Size(98, 21);
             this.cmbAy.TabIndex = 7;
+            this.cmbAy.SelectedIndexChanged += new System.EventHandler(this.cmbAy_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -303,7 +275,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Gelir Gider App | V1.1";
+            this.Text = "Gelir Gider App | V1.2";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -325,10 +297,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Tarih;
-        private System.Windows.Forms.DataGridViewTextBoxColumn harcamaAlani;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Tutar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn İslem;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;

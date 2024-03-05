@@ -23,6 +23,52 @@ namespace Gelir_Gider_App
             {
                 cmbAy.Items.Add(System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(i));
             }
+
+            // Excel Dosyasını Kontrol Et ve Varsa Ayları Oluştur
+            CreateOrInitializeExcelFile();
+        }
+
+        private void CreateOrInitializeExcelFile()
+        {
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Gelir Gider App.xlsx");
+            FileInfo fileInfo = new FileInfo(filePath);
+
+            // Dosya yoksa veya boşsa yeni bir dosya oluştur
+            if (!fileInfo.Exists || fileInfo.Length == 0)
+            {
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                using (var package = new ExcelPackage(fileInfo))
+                {
+                    // Ay isimlerini sırayla al ve kontrol et
+                    var months = Enumerable.Range(1, 12).Select(i => System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(i).ToUpper()).ToList();
+
+                    // Excel dosyasında her bir ay için bir sayfa oluştur, başlıkları ve toplam formülleri ekle
+                    foreach (var month in months)
+                    {
+                        var worksheet = package.Workbook.Worksheets.Add(month);
+
+                        // Başlıkları Ekle
+                        worksheet.Cells["A1"].Value = "Harcama Adı";
+                        worksheet.Cells["B1"].Value = "Tarih";
+                        worksheet.Cells["C1"].Value = "Tutar";
+                        worksheet.Cells["D1"].Value = "İşlem";
+
+                        // Gelir, Gider ve Kalan için bölümleri ve formülleri ekle
+                        worksheet.Cells["F7"].Value = "Gelir";
+                        worksheet.Cells["F8"].Value = "Gider";
+                        worksheet.Cells["F9"].Value = "Kalan";
+                        worksheet.Cells["G7"].Formula = "SUMIF(C:C,\">0\")";
+                        worksheet.Cells["G8"].Formula = "SUMIF(C:C,\"<0\")";
+                        worksheet.Cells["G9"].Formula = "G7+G8"; // Daha doğru formülleme
+                        worksheet.Cells["G7"].Style.Font.Color.SetColor(System.Drawing.Color.Green);
+                        worksheet.Cells["G8"].Style.Font.Color.SetColor(System.Drawing.Color.Red);
+                        worksheet.Cells["G9"].Style.Font.Color.SetColor(System.Drawing.Color.Blue);
+                    }
+
+                    // Değişiklikleri kaydet
+                    package.Save();
+                }
+            }
         }
 
         private void uygulamaHakkindaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -110,6 +156,48 @@ namespace Gelir_Gider_App
         }
 
 
+        public void LoadExcelDataToDataGridView(string selectedMonth)
+        {
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Gelir Gider App.xlsx");
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial; // Geliştirme amacıyla kullanım için lisans matrisini ayarladı
+            DataTable dataTable = new DataTable();
+
+            using(var package = new ExcelPackage(new FileInfo(filePath)))
+    {
+                var worksheet = package.Workbook.Worksheets[selectedMonth];
+                if (worksheet == null) return; // Seçilen ay için bir sayfa yoksa dön
+
+                // Sütun başlıklarını ve sınırlı sütunları DataTable'a ekle
+                dataTable.Columns.Add("Harcama Adı");
+                dataTable.Columns.Add("Tarih");
+                dataTable.Columns.Add("Tutar");
+                dataTable.Columns.Add("İşlem");
+
+                // A2:D2 aralığındaki verileri DataTable'a aktar
+                for (int rowNum = 2; rowNum <= worksheet.Dimension.End.Row; rowNum++)
+                {
+                    var row = dataTable.NewRow();
+
+                    // Sadece A, B, C, D sütunlarındaki verileri al
+                    row["Harcama Adı"] = worksheet.Cells[rowNum, 1].Text;
+                    row["Tarih"] = worksheet.Cells[rowNum, 2].Text;
+                    row["Tutar"] = worksheet.Cells[rowNum, 3].Text;
+                    row["İşlem"] = worksheet.Cells[rowNum, 4].Text;
+
+                    dataTable.Rows.Add(row);
+                }
+            }
+
+            // DataGridView'i DataTable ile doldur
+            dataGridView1.DataSource = dataTable;
+        }
+
+        private void cmbAy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Seçilen ayın adını al (ComboBox'dan)
+            string selectedMonth = cmbAy.SelectedItem.ToString();
+            LoadExcelDataToDataGridView(selectedMonth.ToUpper());
+        }
     }
 }
 

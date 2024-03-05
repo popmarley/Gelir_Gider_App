@@ -1,5 +1,5 @@
 ﻿
-Versiyon 1.1(is Derlemesi 240301,1710)
+Versiyon 1.2(is Derlemesi 240305,1517)
 
 
 Bilenen hatalar ve eklenecekler
@@ -35,3 +35,4 @@ Yapılanlar
 + Hakkında formuna görüş ve öneri sunmak için link eklendi (Versiyon 1.0(is Derlemesi 240229,1442))
 + Excel oluşturulurken her aya özel sayfa açılaması eklendi (Versiyon 1.1(is Derlemesi 240301,1710))
 + Excelde verileri eklerken işlem türüne göre renklendirme işlevi eklendi (Versiyon 1.1(is Derlemesi 240301,1710))
++ Exceldeki verilerin program içerisinde görüntülenecek şekilde entegre edildi (Versiyon 1.2(is Derlemesi 240305,1517))
