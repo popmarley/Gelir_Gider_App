@@ -13,7 +13,7 @@ Bu uygulama, kullanıcıların aylık gelir ve giderlerini kolayca takip edebilm
 
 Son güncellemelerle birlikte uygulamaya birçok yeni özellik ve iyileştirme eklendi:
 
-**Versiyon 1.0 (İş Derlemesi 240229,1442) Yenilikleri**
+**Versiyon 1.0 (is Derlemesi 240229,1442) Yenilikleri**
 
 1. Ana Sayfa Geliştirildi: Kullanıcı dostu bir ana sayfa tasarımı oluşturuldu.
 2. Yapılacaklar Listesi: Uygulama içi yapılacaklar listesi eklendi.
@@ -22,9 +22,13 @@ Son güncellemelerle birlikte uygulamaya birçok yeni özellik ve iyileştirme e
 5. Görüş ve Öneri Bağlantısı: Kullanıcıların geri bildirimde bulunabilmeleri için Hakkında sayfasına bir link eklendi.
 6. Otomatik Dosya Konumu Açma: Uygulama .exe dosyası oluşturulduğunda, dosya konumunun otomatik olarak açılması sağlandı.
 
-**Versiyon 1.1 (İş Derlemesi 240301,1710) Yenilikleri**
+**Versiyon 1.1 (is Derlemesi 240301,1710) Yenilikleri**
 1. Aylık Excel Sayfa Oluşturma: Her ay için otomatik olarak özel Excel sayfaları oluşturulması sağlandı, böylece kullanıcılar finansal takiplerini daha düzenli bir şekilde yapabilirler.
 2. Renklendirme İşlevi: Gelir ve gider işlemleri Excel'de işlem türüne göre otomatik renklendirilerek, finansal verilerin görsel olarak daha kolay ayırt edilmesi sağlandı.
+
+**Versiyon 1.2 (is Derlemesi 240305,1517) Yenilikleri**
+1. Exceldeki verilerin program içerisinde görüntülenecek şekilde entegre edildi.
+2. Exceldeki verilerin hesaplanmasını görüntüleme eklendi.
 
 **Daha fazla detay için [güncelleme notlarımıza](#https://github.com/popmarley/Note_Pad/releases/tag/v2.5) göz atın.**
 
