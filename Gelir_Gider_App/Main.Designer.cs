@@ -43,14 +43,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblGelir = new System.Windows.Forms.Label();
+            this.lblKalan = new System.Windows.Forms.Label();
+            this.lblGider = new System.Windows.Forms.Label();
             this.cmbAy = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -61,7 +58,7 @@
             this.hakkındaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(635, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(649, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -144,7 +141,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(192, 53);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(438, 236);
+            this.dataGridView1.Size = new System.Drawing.Size(443, 236);
             this.dataGridView1.TabIndex = 5;
             // 
             // label4
@@ -174,32 +171,32 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Kalan";
             // 
-            // label7
+            // lblGelir
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(80, 336);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "label4";
+            this.lblGelir.AutoSize = true;
+            this.lblGelir.Location = new System.Drawing.Point(80, 336);
+            this.lblGelir.Name = "lblGelir";
+            this.lblGelir.Size = new System.Drawing.Size(35, 13);
+            this.lblGelir.TabIndex = 6;
+            this.lblGelir.Text = "label4";
             // 
-            // label8
+            // lblKalan
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(80, 414);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 13);
-            this.label8.TabIndex = 6;
-            this.label8.Text = "label4";
+            this.lblKalan.AutoSize = true;
+            this.lblKalan.Location = new System.Drawing.Point(80, 414);
+            this.lblKalan.Name = "lblKalan";
+            this.lblKalan.Size = new System.Drawing.Size(35, 13);
+            this.lblKalan.TabIndex = 6;
+            this.lblKalan.Text = "label4";
             // 
-            // label9
+            // lblGider
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(80, 375);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(35, 13);
-            this.label9.TabIndex = 6;
-            this.label9.Text = "label4";
+            this.lblGider.AutoSize = true;
+            this.lblGider.Location = new System.Drawing.Point(80, 375);
+            this.lblGider.Name = "lblGider";
+            this.lblGider.Size = new System.Drawing.Size(35, 13);
+            this.lblGider.TabIndex = 6;
+            this.lblGider.Text = "label4";
             // 
             // cmbAy
             // 
@@ -220,52 +217,24 @@
             this.label10.Text = "İşlem \r\nYapılacak \r\nAy";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(204, 327);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(98, 20);
-            this.textBox3.TabIndex = 1;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(213, 365);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Kaydet";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(155, 330);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(44, 13);
-            this.label11.TabIndex = 4;
-            this.label11.Text = "Gelir Gir";
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(635, 450);
+            this.ClientSize = new System.Drawing.Size(649, 450);
             this.Controls.Add(this.cmbAy);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.lblKalan);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label9);
+            this.Controls.Add(this.lblGelir);
+            this.Controls.Add(this.lblGider);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.label11);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.btnKaydet);
-            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.dtTarih);
             this.Controls.Add(this.txtTutar);
             this.Controls.Add(this.txtHarcama);
@@ -300,14 +269,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblGelir;
+        private System.Windows.Forms.Label lblKalan;
+        private System.Windows.Forms.Label lblGider;
         private System.Windows.Forms.ComboBox cmbAy;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label11;
     }
 }
 

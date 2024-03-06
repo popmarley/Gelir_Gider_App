@@ -26,7 +26,22 @@ namespace Gelir_Gider_App
 
             // Excel Dosyasını Kontrol Et ve Varsa Ayları Oluştur
             CreateOrInitializeExcelFile();
+
+            // Mevcut ayı otomatik olarak seç
+            SelectCurrentMonth();
+
+
         }
+
+        private void SelectCurrentMonth()
+        {
+            // Mevcut ayın adını al
+            string currentMonthName = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Now.Month);
+
+            // ComboBox'ta mevcut aya karşılık gelen değeri seç
+            cmbAy.SelectedIndex = cmbAy.Items.IndexOf(currentMonthName);
+        }
+
 
         private void CreateOrInitializeExcelFile()
         {
@@ -148,11 +163,17 @@ namespace Gelir_Gider_App
 
                 // Değişiklikleri kaydet
                 package.Save();
+                // Kaydetme işlemi tamamlandıktan sonra, mevcut 'selectedMonth' değişkenini kullan
+                LoadExcelDataToDataGridView(selectedMonth);
+                UpdateLabelsFromExcel(selectedMonth);
             }
 
             MessageBox.Show("Kayıt Başarılı!");
+           
             txtHarcama.Clear();
             txtTutar.Clear();
+           
+
         }
 
 
@@ -190,13 +211,65 @@ namespace Gelir_Gider_App
 
             // DataGridView'i DataTable ile doldur
             dataGridView1.DataSource = dataTable;
+            
+        }
+
+        private void UpdateLabelsFromExcel(string selectedMonth)
+        {
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Gelir Gider App.xlsx");
+            FileInfo fileInfo = new FileInfo(filePath);
+
+            if (fileInfo.Exists)
+            {
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                using (var package = new ExcelPackage(fileInfo))
+                {
+                    var worksheet = package.Workbook.Worksheets[selectedMonth];
+
+                    if (worksheet != null)
+                    {
+                        // Hesaplamaları zorla
+                        worksheet.Calculate();
+                        // Excel'den değerleri oku
+                        var gelirValue = worksheet.Cells["G7"].Value?.ToString() ?? "0";
+                        var giderValue = worksheet.Cells["G8"].Value?.ToString() ?? "0";
+                        var kalanValue = worksheet.Cells["G9"].Value?.ToString() ?? "0";
+
+                        // UI thread üzerinde label'ları güncelle
+                        Action updateUI = () =>
+                        {
+                            lblGelir.Text = gelirValue;
+                            lblGider.Text = giderValue;
+                            lblKalan.Text = kalanValue;
+
+                            lblGelir.ForeColor = System.Drawing.Color.Green;
+                            lblGider.ForeColor = System.Drawing.Color.Red;
+                            lblKalan.ForeColor = System.Drawing.Color.Blue;
+                        };
+
+                        // UI thread kontrolü
+                        if (this.InvokeRequired)
+                        {
+                            this.Invoke(updateUI);
+                        }
+                        else
+                        {
+                            updateUI();
+                        }
+                    }
+                }
+            }
         }
 
         private void cmbAy_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             // Seçilen ayın adını al (ComboBox'dan)
             string selectedMonth = cmbAy.SelectedItem.ToString();
             LoadExcelDataToDataGridView(selectedMonth.ToUpper());
+
+            // Seçili aya göre Excel'den verileri oku ve label'lara ata
+            UpdateLabelsFromExcel(selectedMonth.ToUpper());
         }
     }
 }

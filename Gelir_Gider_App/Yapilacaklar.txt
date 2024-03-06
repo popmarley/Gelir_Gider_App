@@ -36,3 +36,4 @@ Yapılanlar
 + Excel oluşturulurken her aya özel sayfa açılaması eklendi (Versiyon 1.1(is Derlemesi 240301,1710))
 + Excelde verileri eklerken işlem türüne göre renklendirme işlevi eklendi (Versiyon 1.1(is Derlemesi 240301,1710))
 + Exceldeki verilerin program içerisinde görüntülenecek şekilde entegre edildi (Versiyon 1.2(is Derlemesi 240305,1517))
++ Exceldeki verilerin hesaplanmasını görüntüleme eklendi (Versiyon 1.2(is Derlemesi 240305,1517))
