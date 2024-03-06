@@ -1,5 +1,5 @@
 ﻿
-Versiyon 1.2(is Derlemesi 240305,1517)
+Versiyon 1.3(is Derlemesi 240306,1018)
 
 
 Bilenen hatalar ve eklenecekler
@@ -20,7 +20,7 @@ Bilenen hatalar ve eklenecekler
 - Giriş ekranı yapılacak
 - kullanıcı adı ya da e posta ile giriş yapabilme olacak
 - beni hatırla butonu olacak
-
+- datagridde verileri sil güncelle işlevi olacak
 
 
 Yapılanlar
@@ -37,3 +37,4 @@ Yapılanlar
 + Excelde verileri eklerken işlem türüne göre renklendirme işlevi eklendi (Versiyon 1.1(is Derlemesi 240301,1710))
 + Exceldeki verilerin program içerisinde görüntülenecek şekilde entegre edildi (Versiyon 1.2(is Derlemesi 240305,1517))
 + Exceldeki verilerin hesaplanmasını görüntüleme eklendi (Versiyon 1.2(is Derlemesi 240305,1517))
++ Tablodaki işlemler sütunu işlevine göre renklendirme yapıldı (Versiyon 1.3(is Derlemesi 240306,1018))

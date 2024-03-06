@@ -271,6 +271,27 @@ namespace Gelir_Gider_App
             // Seçili aya göre Excel'den verileri oku ve label'lara ata
             UpdateLabelsFromExcel(selectedMonth.ToUpper());
         }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // İşlem sütununun indeksini kontrol et (örneğin 3 varsayalım)
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "İşlem" && e.Value != null)
+            {
+                // Hücre değerine göre renk ataması yap
+                if (e.Value.ToString() == "Para Giriş")
+                {
+                    e.CellStyle.ForeColor = Color.Green; // Metin rengi
+                                                         // Alternatif olarak, arka plan rengini de ayarlayabilirsiniz:
+                                                         // e.CellStyle.BackColor = Color.LightGreen;
+                }
+                else if (e.Value.ToString() == "Para Çıkış")
+                {
+                    e.CellStyle.ForeColor = Color.Red; // Metin rengi
+                                                       // Alternatif olarak, arka plan rengini de ayarlayabilirsiniz:
+                                                       // e.CellStyle.BackColor = Color.LightCoral;
+                }
+            }
+        }
     }
 }
 
