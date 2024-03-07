@@ -30,7 +30,10 @@ Son güncellemelerle birlikte uygulamaya birçok yeni özellik ve iyileştirme e
 1. Exceldeki verilerin program içerisinde görüntülenecek şekilde entegre edildi.
 2. Exceldeki verilerin hesaplanmasını görüntüleme eklendi.
 
-**Daha fazla detay için [güncelleme notlarımıza](#https://github.com/popmarley/Note_Pad/releases/tag/v2.5) göz atın.**
+**Versiyon 1.3 (is Derlemesi 240306,1018) Yenilikleri**
+1. Excele sayısal veriler kaydedilirken binlik ayırıcı formatlama ile kaydedilmesi ve uygulamada ona göre gösterilmesi eklendi.
+
+**Daha fazla detay için [güncelleme notlarımıza](https://github.com/popmarley/Gelir_Gider_App/releases/tag/v1.3) göz atın.**
 
 ## Kurulum
 
