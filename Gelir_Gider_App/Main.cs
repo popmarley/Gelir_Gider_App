@@ -30,7 +30,26 @@ namespace Gelir_Gider_App
             // Mevcut ayı otomatik olarak seç
             SelectCurrentMonth();
 
+            TabloSilGuncelle();
+        }
 
+        private void TabloSilGuncelle()
+        {
+            // Güncelle butonu sütunu
+            DataGridViewButtonColumn btnGuncelle = new DataGridViewButtonColumn();
+            btnGuncelle.HeaderText = "";
+            btnGuncelle.Text = "Güncelle";
+            btnGuncelle.Name = "btnGuncelle";
+            btnGuncelle.UseColumnTextForButtonValue = true; // Butonun üzerindeki yazıyı ayarlar
+            dataGridView1.Columns.Add(btnGuncelle);
+
+            // Sil butonu sütunu
+            DataGridViewButtonColumn btnSil = new DataGridViewButtonColumn();
+            btnSil.HeaderText = "";
+            btnSil.Text = "Sil";
+            btnSil.Name = "btnSil";
+            btnSil.UseColumnTextForButtonValue = true; // Butonun üzerindeki yazıyı ayarlar
+            dataGridView1.Columns.Add(btnSil);
         }
 
         private void SelectCurrentMonth()
@@ -136,7 +155,10 @@ namespace Gelir_Gider_App
                 // Verileri Ekle
                 worksheet.Cells[$"A{row}"].Value = txtHarcama.Text;
                 worksheet.Cells[$"B{row}"].Value = dtTarih.Value.ToString("dd/MM/yyyy");
+                // Tutarı sayısal olarak ekle ve formatını ayarla
                 worksheet.Cells[$"C{row}"].Value = decimal.Parse(txtTutar.Text);
+                worksheet.Cells[$"C{row}"].Style.Numberformat.Format = "#,##0"; // Binlik ayırıcı ekler
+
                 // Tutar + veya -'ye göre renk ve metin ayarlama
                 if (decimal.Parse(txtTutar.Text) < 0)
                 {
@@ -151,9 +173,9 @@ namespace Gelir_Gider_App
 
                 // Toplam Formülleri Ekle
                 // Bu kısımlar sabit kalır
-                worksheet.Cells["F7"].Value = "Gelir";
-                worksheet.Cells["F8"].Value = "Gider";
-                worksheet.Cells["F9"].Value = "Kalan";
+                worksheet.Cells["F7"].Value = "Gelen Para";
+                worksheet.Cells["F8"].Value = "Giden Para";
+                worksheet.Cells["F9"].Value = "Durum(K/Z)";
                 worksheet.Cells["G7"].Formula = "SUMIF(C:C,\">0\")";
                 worksheet.Cells["G8"].Formula = "SUMIF(C:C,\"<0\")";
                 worksheet.Cells["G9"].Formula = "G7+G8"; // Daha doğru formülleme
@@ -231,9 +253,10 @@ namespace Gelir_Gider_App
                         // Hesaplamaları zorla
                         worksheet.Calculate();
                         // Excel'den değerleri oku
-                        var gelirValue = worksheet.Cells["G7"].Value?.ToString() ?? "0";
-                        var giderValue = worksheet.Cells["G8"].Value?.ToString() ?? "0";
-                        var kalanValue = worksheet.Cells["G9"].Value?.ToString() ?? "0";
+                        var gelirValue = double.TryParse(worksheet.Cells["G7"].Value?.ToString(), out double gelir) ? gelir.ToString("N0") : "0";
+                        var giderValue = double.TryParse(worksheet.Cells["G8"].Value?.ToString(), out double gider) ? gider.ToString("N0") : "0";
+                        var kalanValue = double.TryParse(worksheet.Cells["G9"].Value?.ToString(), out double kalan) ? kalan.ToString("N0") : "0";
+
 
                         // UI thread üzerinde label'ları güncelle
                         Action updateUI = () =>
@@ -289,6 +312,43 @@ namespace Gelir_Gider_App
                     e.CellStyle.ForeColor = Color.Red; // Metin rengi
                                                        // Alternatif olarak, arka plan rengini de ayarlayabilirsiniz:
                                                        // e.CellStyle.BackColor = Color.LightCoral;
+                }
+            }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // "Sil" butonunun sütun indeksini kontrol et
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "btnSil" && e.RowIndex >= 0)
+            {
+                // Kullanıcıdan silme işlemini onaylamasını iste
+                var confirmResult = MessageBox.Show("Bu kaydı silmek istediğinize emin misiniz?", "Kaydı Sil", MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    // Excel dosyasını aç
+                    string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Gelir Gider App.xlsx");
+                    ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                    using (var package = new ExcelPackage(new FileInfo(filePath)))
+                    {
+                        string selectedMonth = cmbAy.SelectedItem.ToString().ToUpper();
+                        var worksheet = package.Workbook.Worksheets[selectedMonth];
+                        if (worksheet != null)
+                        {
+                            // dataGridView1'den seçilen satırın indeksine karşılık gelen Excel satırını bul (Excel'de satır indeksleri 1'den başlar)
+                            int excelRowIndex = e.RowIndex + 2; // dataGridView'deki indeks 0'dan başladığı için ve başlık satırı olduğu için +2
+                            worksheet.DeleteRow(excelRowIndex);
+
+                            // Excel dosyasındaki değişiklikleri kaydet
+                            package.Save();
+                        }
+                    }
+
+                    // DataGridView'den seçilen satırı sil
+                    dataGridView1.Rows.RemoveAt(e.RowIndex);
+
+
+                    // Gerekirse burada DataGridView'i yeniden yükleyin ve güncelleyin
+                     //LoadExcelDataToDataGridView(selectedMonth);
                 }
             }
         }

@@ -143,39 +143,46 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(443, 236);
             this.dataGridView1.TabIndex = 5;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label4.ForeColor = System.Drawing.Color.Firebrick;
             this.label4.Location = new System.Drawing.Point(16, 336);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 13);
+            this.label4.Size = new System.Drawing.Size(84, 15);
             this.label4.TabIndex = 6;
-            this.label4.Text = "Geliriniz:";
+            this.label4.Text = "Gelen Para:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label5.ForeColor = System.Drawing.Color.Firebrick;
             this.label5.Location = new System.Drawing.Point(16, 375);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(47, 13);
+            this.label5.Size = new System.Drawing.Size(84, 15);
             this.label5.TabIndex = 6;
-            this.label5.Text = "Gideriniz";
+            this.label5.Text = "Giden Para:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label6.ForeColor = System.Drawing.Color.Firebrick;
             this.label6.Location = new System.Drawing.Point(16, 414);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(34, 13);
+            this.label6.Size = new System.Drawing.Size(84, 15);
             this.label6.TabIndex = 6;
-            this.label6.Text = "Kalan";
+            this.label6.Text = "Durum(K/Z):";
             // 
             // lblGelir
             // 
             this.lblGelir.AutoSize = true;
-            this.lblGelir.Location = new System.Drawing.Point(80, 336);
+            this.lblGelir.Location = new System.Drawing.Point(109, 336);
             this.lblGelir.Name = "lblGelir";
             this.lblGelir.Size = new System.Drawing.Size(35, 13);
             this.lblGelir.TabIndex = 6;
@@ -184,7 +191,7 @@
             // lblKalan
             // 
             this.lblKalan.AutoSize = true;
-            this.lblKalan.Location = new System.Drawing.Point(80, 414);
+            this.lblKalan.Location = new System.Drawing.Point(109, 416);
             this.lblKalan.Name = "lblKalan";
             this.lblKalan.Size = new System.Drawing.Size(35, 13);
             this.lblKalan.TabIndex = 6;
@@ -193,7 +200,7 @@
             // lblGider
             // 
             this.lblGider.AutoSize = true;
-            this.lblGider.Location = new System.Drawing.Point(80, 375);
+            this.lblGider.Location = new System.Drawing.Point(109, 376);
             this.lblGider.Name = "lblGider";
             this.lblGider.Size = new System.Drawing.Size(35, 13);
             this.lblGider.TabIndex = 6;
@@ -245,7 +252,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Gelir Gider App | V1.3";
+            this.Text = "Gelir Gider App | V1.4";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
