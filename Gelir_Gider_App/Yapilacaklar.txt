@@ -1,5 +1,5 @@
 ﻿
-Versiyon 1.4(is Derlemesi 240307,1144)
+Versiyon 1.4(is Derlemesi 240307,1221)
 
 
 Bilenen hatalar ve eklenecekler
@@ -23,7 +23,8 @@ Bilenen hatalar ve eklenecekler
 - admin kullanıcıları silebilir bilgilerini güncelleyebilir
 - kullanıcı adı ya da e posta ile giriş yapabilme olacak
 - beni hatırla butonu olacak
-- datagridde verileri sil güncelle işlevi olacak sil çalısıyor ama hesaplama yapmıyor
+- datagridde verileri güncelle işlevi olacak.
+- datagridde verileri silince hesaplama da sıkıntı cıkıyor 2. de normal hesaplıyor anlık değişmesi lazım
 - aylık fix ödenecekler listesi kalan ödemeler alanı
 - combobox a aylık fix ödecenekler listelenecek ya da diğer olacak daha sonra ona göre açıklama yazılacak harcama adında o görünecek
 - taksitler harcamaya göre düşecek
@@ -54,3 +55,5 @@ Yapılanlar
 + Tablodaki işlemler sütunu işlevine göre renklendirme yapıldı (Versiyon 1.3(is Derlemesi 240306,1018))
 + Excele sayısal veriler kaydedilirken binlik ayırıcı formatlama ile kaydedilmesi ve uygulamada ona göre gösterilmesi eklendi (Versiyon 1.4(is Derlemesi 240307,1139))
 + Uygulama için icon eklendi (Versiyon 1.4(is Derlemesi 240307,1144))
++ Tablodan verileri silme eklendi (Versiyon 1.4(is Derlemesi 240307,1221))
++ Exceli oluştururken UI çalışması yapıldı (Versiyon 1.4(is Derlemesi 240307,1221))

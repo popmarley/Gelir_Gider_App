@@ -1,4 +1,5 @@
 ﻿using OfficeOpenXml;
+using OfficeOpenXml.Style;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,6 +32,8 @@ namespace Gelir_Gider_App
             SelectCurrentMonth();
 
             TabloSilGuncelle();
+
+            CustomizeDataGridViewStyle();
         }
 
         private void TabloSilGuncelle()
@@ -81,22 +84,45 @@ namespace Gelir_Gider_App
                     {
                         var worksheet = package.Workbook.Worksheets.Add(month);
 
-                        // Başlıkları Ekle
-                        worksheet.Cells["A1"].Value = "Harcama Adı";
-                        worksheet.Cells["B1"].Value = "Tarih";
-                        worksheet.Cells["C1"].Value = "Tutar";
-                        worksheet.Cells["D1"].Value = "İşlem";
+                        // Başlıkları Ekle ve Stillerini Ayarla
+                        var headerRange = "A1:D1"; // Başlıkların olduğu hücre aralığı
+                        worksheet.Cells[headerRange].LoadFromArrays(new string[][] {
+                        new string[] { "Harcama Adı", "Tarih", "Tutar", "İşlem" }
+                        });
+
+                        // Başlıklar için stili ayarla (kalın ve ortalı)
+                        worksheet.Cells[headerRange].Style.Font.Bold = true; // Başlık fontunu kalın yap
+                        worksheet.Cells[headerRange].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center; // Başlıkları ortalı yap
+
+                        // Opsiyonel: Başlık arka plan rengini ayarla
+                        //worksheet.Cells[headerRange].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        //worksheet.Cells[headerRange].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGray);
+
 
                         // Gelir, Gider ve Kalan için bölümleri ve formülleri ekle
-                        worksheet.Cells["F7"].Value = "Gelir";
-                        worksheet.Cells["F8"].Value = "Gider";
-                        worksheet.Cells["F9"].Value = "Kalan";
+                        worksheet.Cells["F7"].Value = "Gelen Para";
+                        worksheet.Cells["F8"].Value = "Giden Para";
+                        worksheet.Cells["F9"].Value = "Durum(K/Z)";
                         worksheet.Cells["G7"].Formula = "SUMIF(C:C,\">0\")";
                         worksheet.Cells["G8"].Formula = "SUMIF(C:C,\"<0\")";
                         worksheet.Cells["G9"].Formula = "G7+G8"; // Daha doğru formülleme
+
+                        // Gelir, Gider ve Kalan hücrelerinin formatını ayarla, yanında TL simgesi ile
+                        worksheet.Cells["G7"].Style.Numberformat.Format = "#,##0 \"₺\"";
+                        worksheet.Cells["G8"].Style.Numberformat.Format = "#,##0 \"₺\"";
+                        worksheet.Cells["G9"].Style.Numberformat.Format = "#,##0 \"₺\"";
+
                         worksheet.Cells["G7"].Style.Font.Color.SetColor(System.Drawing.Color.Green);
                         worksheet.Cells["G8"].Style.Font.Color.SetColor(System.Drawing.Color.Red);
                         worksheet.Cells["G9"].Style.Font.Color.SetColor(System.Drawing.Color.Blue);
+
+                        // Başlıklar için stili ayarla (kalın ve ortalı)
+                        worksheet.Cells["F7"].Style.Font.Bold = true; // Başlık fontunu kalın yap
+                        worksheet.Cells["F7"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left; // Başlıkları sola yasla 
+                        worksheet.Cells["F8"].Style.Font.Bold = true; // Başlık fontunu kalın yap
+                        worksheet.Cells["F8"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left; // Başlıkları sola yasla 
+                        worksheet.Cells["F9"].Style.Font.Bold = true; // Başlık fontunu kalın yap
+                        worksheet.Cells["F9"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left; // Başlıkları sola yasla 
                     }
 
                     // Değişiklikleri kaydet
@@ -134,11 +160,11 @@ namespace Gelir_Gider_App
                 string selectedMonth = cmbAy.SelectedItem.ToString().ToUpper();
                 var worksheet = package.Workbook.Worksheets[selectedMonth] ?? package.Workbook.Worksheets.Add(selectedMonth);
 
-                // Başlıkları Ekle
-                worksheet.Cells["A1"].Value = "Harcama Adı";
-                worksheet.Cells["B1"].Value = "Tarih";
-                worksheet.Cells["C1"].Value = "Tutar";
-                worksheet.Cells["D1"].Value = "İşlem";
+                // Başlıkları Ekle ve Stillerini Ayarla
+                var headerRange = "A1:D1"; // Başlıkların olduğu hücre aralığı
+                worksheet.Cells[headerRange].LoadFromArrays(new string[][] {
+                new string[] { "Harcama Adı", "Tarih", "Tutar", "İşlem" }
+                });
 
                 // Sadece A-D sütunları için son dolu satırı bul
                 int lastRowForABCD = 1;
@@ -157,7 +183,7 @@ namespace Gelir_Gider_App
                 worksheet.Cells[$"B{row}"].Value = dtTarih.Value.ToString("dd/MM/yyyy");
                 // Tutarı sayısal olarak ekle ve formatını ayarla
                 worksheet.Cells[$"C{row}"].Value = decimal.Parse(txtTutar.Text);
-                worksheet.Cells[$"C{row}"].Style.Numberformat.Format = "#,##0"; // Binlik ayırıcı ekler
+                worksheet.Cells[$"C{row}"].Style.Numberformat.Format = "#,##0 \"₺\""; // Binlik ayırıcı ekler
 
                 // Tutar + veya -'ye göre renk ve metin ayarlama
                 if (decimal.Parse(txtTutar.Text) < 0)
@@ -171,18 +197,6 @@ namespace Gelir_Gider_App
                     worksheet.Cells[$"D{row}"].Style.Font.Color.SetColor(System.Drawing.Color.Green);
                 }
 
-                // Toplam Formülleri Ekle
-                // Bu kısımlar sabit kalır
-                worksheet.Cells["F7"].Value = "Gelen Para";
-                worksheet.Cells["F8"].Value = "Giden Para";
-                worksheet.Cells["F9"].Value = "Durum(K/Z)";
-                worksheet.Cells["G7"].Formula = "SUMIF(C:C,\">0\")";
-                worksheet.Cells["G8"].Formula = "SUMIF(C:C,\"<0\")";
-                worksheet.Cells["G9"].Formula = "G7+G8"; // Daha doğru formülleme
-                worksheet.Cells["G7"].Style.Font.Color.SetColor(System.Drawing.Color.Green);
-                worksheet.Cells["G8"].Style.Font.Color.SetColor(System.Drawing.Color.Red);
-                worksheet.Cells["G9"].Style.Font.Color.SetColor(System.Drawing.Color.Blue);
-
                 // Değişiklikleri kaydet
                 package.Save();
                 // Kaydetme işlemi tamamlandıktan sonra, mevcut 'selectedMonth' değişkenini kullan
@@ -191,10 +205,10 @@ namespace Gelir_Gider_App
             }
 
             MessageBox.Show("Kayıt Başarılı!");
-           
+
             txtHarcama.Clear();
             txtTutar.Clear();
-           
+
 
         }
 
@@ -205,8 +219,8 @@ namespace Gelir_Gider_App
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial; // Geliştirme amacıyla kullanım için lisans matrisini ayarladı
             DataTable dataTable = new DataTable();
 
-            using(var package = new ExcelPackage(new FileInfo(filePath)))
-    {
+            using (var package = new ExcelPackage(new FileInfo(filePath)))
+            {
                 var worksheet = package.Workbook.Worksheets[selectedMonth];
                 if (worksheet == null) return; // Seçilen ay için bir sayfa yoksa dön
 
@@ -233,7 +247,7 @@ namespace Gelir_Gider_App
 
             // DataGridView'i DataTable ile doldur
             dataGridView1.DataSource = dataTable;
-            
+
         }
 
         private void UpdateLabelsFromExcel(string selectedMonth)
@@ -252,10 +266,10 @@ namespace Gelir_Gider_App
                     {
                         // Hesaplamaları zorla
                         worksheet.Calculate();
-                        // Excel'den değerleri oku
-                        var gelirValue = double.TryParse(worksheet.Cells["G7"].Value?.ToString(), out double gelir) ? gelir.ToString("N0") : "0";
-                        var giderValue = double.TryParse(worksheet.Cells["G8"].Value?.ToString(), out double gider) ? gider.ToString("N0") : "0";
-                        var kalanValue = double.TryParse(worksheet.Cells["G9"].Value?.ToString(), out double kalan) ? kalan.ToString("N0") : "0";
+                        // Excel'den değerleri oku ve " TL" ekleyerek formatla
+                        var gelirValue = double.TryParse(worksheet.Cells["G7"].Value?.ToString(), out double gelir) ? $"{gelir.ToString("#,##0")} ₺" : "0 ₺";
+                        var giderValue = double.TryParse(worksheet.Cells["G8"].Value?.ToString(), out double gider) ? $"{gider.ToString("#,##0")} ₺" : "0 ₺";
+                        var kalanValue = double.TryParse(worksheet.Cells["G9"].Value?.ToString(), out double kalan) ? $"{kalan.ToString("#,##0")} ₺" : "0 ₺";
 
 
                         // UI thread üzerinde label'ları güncelle
@@ -294,6 +308,19 @@ namespace Gelir_Gider_App
             // Seçili aya göre Excel'den verileri oku ve label'lara ata
             UpdateLabelsFromExcel(selectedMonth.ToUpper());
         }
+
+        public void CustomizeDataGridViewStyle()
+        {
+            // Sütun başlıklarının stilini ayarla
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font(dataGridView1.Font, FontStyle.Bold);
+            dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // Opsiyonel: Sütun başlıklarının arka plan ve yazı rengini ayarla
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
+            dataGridView1.EnableHeadersVisualStyles = false; // Özel stilin uygulanmasını sağlar
+        }
+
+
 
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -348,7 +375,7 @@ namespace Gelir_Gider_App
 
 
                     // Gerekirse burada DataGridView'i yeniden yükleyin ve güncelleyin
-                     //LoadExcelDataToDataGridView(selectedMonth);
+                    //LoadExcelDataToDataGridView(selectedMonth);
                 }
             }
         }
