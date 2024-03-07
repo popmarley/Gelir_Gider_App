@@ -33,7 +33,7 @@ Son güncellemelerle birlikte uygulamaya birçok yeni özellik ve iyileştirme e
 **Versiyon 1.3 (is Derlemesi 240306,1018) Yenilikleri**
 1. Tablodaki işlemler sütunu işlevine göre renklendirme yapıldı.
 
-**Daha fazla detay için [güncelleme notlarımıza](https://github.com/popmarley/Gelir_Gider_App/releases/tag/v1.3) göz atın.**
+**Daha fazla detay için [güncelleme notlarımıza](https://github.com/popmarley/Gelir_Gider_App/releases) göz atın.**
 
 ## Kurulum
 
